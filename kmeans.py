@@ -37,7 +37,6 @@ class KMeansClustering:
             # Measure the distance to every centroid
             for i in range(self.k):
                 distances[:, i] = np.linalg.norm(self.data - centers_new[i], axis=1)
-            # print(distances)
 
             # Assign point to closest centroid
             clusters = np.argmin(distances, axis=1)
@@ -47,9 +46,7 @@ class KMeansClustering:
                 centers_new[i] = np.mean([self.data[x] for x in range(len(clusters)) if clusters[x] == i], axis=0)
 
             error = np.linalg.norm(centers_new - centers_old)
-            print(error)
-
-        print(centers_new)
+       
         colors = ['orange', 'blue', 'green']
         for i in range(self.points_count):
             plt.scatter(self.data[i, 0], self.data[i, 1], s=40, color=colors[int(clusters[i])])
